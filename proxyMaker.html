@@ -1,0 +1,110 @@
+<html>
+  <head>
+    <style>
+      
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+
+      @page{ 
+        size: auto;   /* auto is the initial value */
+        margin-left: 8mm;/* this affects the margin in the printer settings */
+	margin-top: 0mm;
+	margin-bottom: 0mm;
+      }
+      img{
+	padding: 2px;
+      }
+    
+    </style>
+  </head>
+
+  <body>
+    <form id="card-input">
+      <input id="card-search" type="search">
+      <input type="submit" value="Get Proxy">
+    </form>
+
+    <script>
+      
+      function makeRange(start,stop,increment){
+        var result = [];
+	var increment = increment || 1;
+	for(var i = start; i < stop; i+=increment){
+	  result.push(i);
+      	}
+	return result;
+      }
+
+
+      function appendCards(cardIds){
+        cardIds.forEach(function(cardId){
+	  var cardImage = document.createElement('img');
+	  var cardImageSrc = 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + cardId + '&type=card';
+	  cardImage.src = cardImageSrc;
+	  cardImage.onclick = function(){
+	    this.remove();
+	  }
+	  document.body.appendChild(cardImage);
+	})
+      }
+
+      function parseAndAppendCards(cardDataArray){
+        cardDataArray.forEach(function(current,index,collection){
+	  var multiverseIds = [];
+
+	  current.editions.forEach(function(current,index,collection){
+	    multiverseIds.push(current.multiverse_id);
+	  })
+	  appendCards(multiverseIds);
+	});
+      
+      }
+
+      appendCards(makeRange(0,2));
+
+      window.addEventListener("load",function(){
+        function sendData() {
+	  var XHR = new XMLHttpRequest();
+
+	  XHR.addEventListener("load",function(event){
+	    //if data is successfully sent
+	    console.log(event.target.responseText);
+	    var cardData = JSON.parse(event.target.responseText);
+	    parseAndAppendCards(cardData);
+
+	  });
+
+	  XHR.addEventListener("error", function(event){
+	    console.log('card request error')
+	  });
+
+	  var searchName = document.getElementById("card-search").value;
+
+	  var apiRequestString = "https://api.deckbrew.com/mtg/cards?name=" + searchName;
+
+	  XHR.open("GET", apiRequestString);
+
+	  XHR.send();
+	
+	};
+
+	var form = document.getElementById("card-input");
+
+	form.addEventListener("submit", function(event){
+	  event.preventDefault();
+	  sendData();
+
+	});
+      
+      });
+
+
+  
+    </script>
+    
+    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=0&amp;type=card">
+    <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=1&amp;type=card">
+  </body>
+</html>
