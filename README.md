@@ -1,5 +1,7 @@
 # mtgProxyMaker
 
+## TODO: Figure out where the blanks are coming from, and deal with them...
+
 ## Generate Sheets from EDHREC
 
 ## TL;DR
@@ -10,17 +12,19 @@ Go to https://edhrec.com/commanders/kumena-tyrant-of-orazca then
 
 paste into `var cards = <PASTE CONTENT>` then
 
-go to `http://localhost:8000/proxyMaker.html` and in the console run
+go to `http://localhost:8000/proxyMaker.html` and in the console run:
 
 ```
-for (var i = 0; i < cards.length; i++){ 
-  console.log(cards[i].replace(/-/g, ' ')); 
-  $('#card-search').value = cards[i].replace(/-/g, ' '); 
-  $('#card-input > input[type="submit"]:nth-child(2)').click(); 
-  }
+generateEDHREC(cards)
 ```
 
-Filter out your card art and make additions. See final section for notes.
+To remove duplicates try:
+
+```
+removeDuplicates(cards)
+```
+
+Filter or make additions. See final section for notes.
 
 ## Long Version
 
