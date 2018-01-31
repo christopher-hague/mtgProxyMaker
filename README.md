@@ -8,7 +8,7 @@ Example: https://edhrec.com/commanders/kumena-tyrant-of-orazca
 
 Select all card names. 
 
-Example: $('div.card > a').map((index,ele) => { return ele.href.split('/')[4] })
+Example: `$('div.card > a').map((index,ele) => { return ele.href.split('/')[4] })`
 
 Example of log result
 ```
