@@ -30,35 +30,46 @@
       
       function makeRange(start,stop,increment){
         var result = [];
-	var increment = increment || 1;
-	for(var i = start; i < stop; i+=increment){
-	  result.push(i);
-      	}
-	return result;
-      }
+	    var increment = increment || 1;
+	    for(var i = start; i < stop; i+=increment){
+	      result.push(i);
+        }
+	    return result;
+       }
 
 
-      function appendCards(cardIds){
+      function appendCards(cardIds,name){
+	    console.log(cardIds)
+	    console.log(cardIds[0])
+	    console.log(cardIds[0][0])
         cardIds.forEach(function(cardId){
-	  var cardImage = document.createElement('img');
-	  var cardImageSrc = 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + cardId + '&type=card';
-	  cardImage.src = cardImageSrc;
-	  cardImage.onclick = function(){
-	    this.remove();
-	  }
-	  document.body.appendChild(cardImage);
-	})
+	      var cardImage = document.createElement('img');
+	      var cardImageSrc = 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + cardId.multiverse_id + '&type=card';
+	      cardImage.src = cardImageSrc;
+	  
+	      cardImage.id = cardId.name;
+	    
+	      cardImage.onclick = function(){
+	        this.remove();
+	      }
+	      document.body.appendChild(cardImage);
+	    })
       }
 
       function parseAndAppendCards(cardDataArray){
         cardDataArray.forEach(function(current,index,collection){
-	  var multiverseIds = [];
+	      var multiverseIds = [];
+          var name = current.name;
 
-	  current.editions.forEach(function(current,index,collection){
-	    multiverseIds.push(current.multiverse_id);
-	  })
-	  appendCards(multiverseIds);
-	});
+	      current.editions.forEach(function(current,index,collection){
+		    //console.log(current)
+			current.name = name; //carry the name over from the outer loop
+	        multiverseIds.push(current);
+	      })
+
+
+	    appendCards(multiverseIds,name);
+	    });
       
       }
 
