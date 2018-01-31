@@ -73,46 +73,44 @@
       
       }
 
-      appendCards(makeRange(0,2));
+      //appendCards(makeRange(0,2));
 
       window.addEventListener("load",function(){
         function sendData() {
-	  var XHR = new XMLHttpRequest();
+	    var XHR = new XMLHttpRequest();
 
-	  XHR.addEventListener("load",function(event){
-	    //if data is successfully sent
-	    console.log(event.target.responseText);
-	    var cardData = JSON.parse(event.target.responseText);
-	    parseAndAppendCards(cardData);
+	    XHR.addEventListener("load",function(event){
+	      //if data is successfully sent
+	      console.log(event.target.responseText);
+	      var cardData = JSON.parse(event.target.responseText);
+	      parseAndAppendCards(cardData);
 
-	  });
+	    });
 
-	  XHR.addEventListener("error", function(event){
-	    console.log('card request error')
-	  });
+	    XHR.addEventListener("error", function(event){
+	      console.log('card request error')
+	    });
 
-	  var searchName = document.getElementById("card-search").value;
+	    var searchName = document.getElementById("card-search").value;
 
-	  var apiRequestString = "https://api.deckbrew.com/mtg/cards?name=" + searchName;
+	    var apiRequestString = "https://api.deckbrew.com/mtg/cards?name=" + searchName;
 
-	  XHR.open("GET", apiRequestString);
+	    XHR.open("GET", apiRequestString);
 
-	  XHR.send();
+	    XHR.send();
 	
-	};
+	  };
 
-	var form = document.getElementById("card-input");
+	  var form = document.getElementById("card-input");
 
-	form.addEventListener("submit", function(event){
-	  event.preventDefault();
-	  sendData();
+	  form.addEventListener("submit", function(event){
+	    event.preventDefault();
+	    sendData();
 
-	});
+	  });
       
-      });
+    });
 
-
-  
     </script>
     
     <img src="http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=0&amp;type=card">
