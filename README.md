@@ -203,7 +203,7 @@ for (var i = 0; i < cards.length; i++){
   $('#card-input > input[type="submit"]:nth-child(2)').click(); 
   }
 ```
-Detail your sheet.
+## Detail your sheet.
 
 1. Filter for your card prefered art.
 
