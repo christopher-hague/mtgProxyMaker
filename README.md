@@ -1,32 +1,51 @@
 # mtgProxyMaker
 
-## TODO: Figure out where the blanks are coming from, and deal with them...
-
 ## Generate Sheets from EDHREC
 
 ## TL;DR
 
-Go to https://edhrec.com/commanders/kumena-tyrant-of-orazca then
+1. Go to any edh rec page that contains cards cards: ex. https://edhrec.com/commanders/kumena-tyrant-of-orazca then open a console and run:
 
 `copy($('div.card > a').map((index,ele) => { return ele.href.split('/')[4] }))` then
 
-paste into `var cards = <PASTE CONTENT>` then
+1. Then go to `http://localhost:8000/proxyMaker.html` and in the console:
 
-go to `http://localhost:8000/proxyMaker.html` and in the console run:
+And paste into an assigned variable `var cards = <PASTE CONTENT>`:
+
+1. Generate cards with:
 
 ```
 generateEDHREC(cards)
 ```
 
-To remove duplicates try:
+1. Remove blanks with:
+
+```
+removeBlanks(cards)
+```
+
+1. Remove duplicates with:
 
 ```
 removeDuplicates(cards)
 ```
 
-Filter or make additions. See final section for notes.
+1. Get an updated count of cards with:
 
-## Long Version
+```
+updateCardCount()
+```
+
+Filter or make additions. Click on cards to delete them. Use the search bar at the top to add them.
+
+Double check for any cards with apostrophies `Gaea's Cradle`, commas `Sorin, Grim Nemesis`, double sided `Thaumatic Compass` => `Spires of Orazca`, or dual cards i.e. `Wear // Tear`. Also this method inserts weird card art sometimes.
+
+Sheets should print 3x3 cards, and cards should be playable size.
+
+Barebones, but works.
+
+
+## Notes
 
 ### Select all card names. 
 
