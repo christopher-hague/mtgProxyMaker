@@ -44,6 +44,20 @@ Sheets should print 3x3 cards, and cards should be playable size.
 
 Barebones, but works.
 
+Bonus script for getting approx total retail price of cards on EDHREC page:
+
+```
+
+function precisionRound(number, precision) {
+  var factor = Math.pow(10, precision);
+  return Math.round(number * factor) / factor;
+}
+
+precisionRound(Array.from(document.querySelectorAll("div.price > a")).filter((ele) => {return ele.text.split("$")[1]}).reduce((memo,ele) => {console.log(parseFloat(ele.text.split("$")[1])); return memo + parseFloat(ele.text.split("$")[1]); },0),2)
+
+```
+
+Example URL https://edhrec.com/commanders/mathas-fiend-seeker has $1157.29 of cards on it.
 
 ## Notes
 
