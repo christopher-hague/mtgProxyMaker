@@ -64,14 +64,7 @@ m.fn.init(198) ["seafloor-oracle", "merfolk-mistbinder", "deeproot-elite", "fore
 
 `copy($('div.card > a').map((index,ele) => { return ele.href.split('/')[4] }))`
 
-Or manually...
-
-1. Right-click an object in Chrome's console and select Store as Global Variable from the context menu. It will return something like temp1 as the variable name.
-
-1. Chrome also has a copy() method, so copy(temp1) in the console should copy that object to your clipboard.
-
-![Alt Text](https://thumbs.gfycat.com/JadedUnsteadyFennecfox-size_restricted.gif)
-
+Copies to clipboard.
 
 
 ### Should paste into something like this:
@@ -170,7 +163,7 @@ Or manually...
 }
 ```
 
-Past into a new object in `http://localhost:8000/proxyMaker.html` console:
+Paste into a new object in `http://localhost:8000/proxyMaker.html` console:
 
 ```
 let cards = {
