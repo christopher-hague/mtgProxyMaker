@@ -8,35 +8,35 @@
 
 `copy($('div.card > a').map((index,ele) => { return ele.href.split('/')[4] }))` then
 
-1. Then go to `http://localhost:8000/proxyMaker.html` and in the console:
+2. Then go to `http://localhost:8000/proxyMaker.html` and in the console:
 
 And paste into an assigned variable `var cards = <PASTE CONTENT>`:
 
-1. Generate cards with:
+3. Generate cards with:
 
 ```
 generateEDHREC(cards)
 ```
 
-1. Remove blanks with:
+4. Remove blanks with:
 
 ```
 removeBlanks(cards)
 ```
 
-1. Remove duplicates with:
+5. Remove duplicates with:
 
 ```
 removeDuplicates(cards)
 ```
 
-1. Get an updated count of cards with:
+6. Get an updated count of cards with:
 
 ```
 updateCardCount()
 ```
 
-Filter or make additions. Click on cards to delete them. Use the search bar at the top to add them.
+7. Filter or make additions. Click on cards to delete them. Use the search bar at the top to add them.
 
 Double check for any cards with apostrophies `Gaea's Cradle`, commas `Sorin, Grim Nemesis`, double sided `Thaumatic Compass` => `Spires of Orazca`, or dual cards i.e. `Wear // Tear`. Also this method inserts weird card art sometimes.
 
