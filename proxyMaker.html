@@ -24,6 +24,7 @@
     <form id="card-input">
       <input id="card-search" type="search">
       <input type="submit" value="Get Proxy">
+	  <label>Card count<span id="card-count"> </span></label>
     </form>
 
     <script>
@@ -38,19 +39,56 @@
        }
 
 
+	  function generateEDHREC(cards,cb){
+	    for (var i = 0; i < cards.length; i++){
+          console.log(cards[i].replace(/-/g, ' '));
+          $('#card-search').value = cards[i].replace(/-/g, ' ');
+          $('#card-input > input[type="submit"]:nth-child(2)').click();
+		  updateCardCount();
+         }
+	   }
+
+	   function removeDuplicates(cards,cb){
+	     for (var i = 0; i < cards.length; i++){
+		   let collection = document.querySelectorAll("."+cards[i]);
+
+		   collection.forEach((ele,i) => {
+		     if (i > 0){ ele.remove() }
+		   })
+		 }
+		 updateCardCount();
+	   
+	   }
+
+	   function removeEmpties(cards,cb){
+         for (var i = 0; i < cards.length; i++){
+           let collection = document.querySelectorAll("."+cards[i]);
+
+           collection.forEach((ele,i) => {
+             if (ele.src.split("=")[1].split("&")[0] === "0"){ ele.remove() }
+           })
+         }
+
+		 updateCardCount();
+
+       }
+
+	   function updateCardCount(){
+	     $('#card-count').textContent = document.querySelectorAll("img").length; 
+	   }
+
       function appendCards(cardIds,name){
-	    console.log(cardIds)
-	    console.log(cardIds[0])
-	    console.log(cardIds[0][0])
         cardIds.forEach(function(cardId){
 	      var cardImage = document.createElement('img');
 	      var cardImageSrc = 'http://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=' + cardId.multiverse_id + '&type=card';
 	      cardImage.src = cardImageSrc;
 	  
-	      cardImage.id = cardId.name;
+	      cardImage.classList.add(cardId.name.replace(/\s+/g, '-'));
 	    
 	      cardImage.onclick = function(){
 	        this.remove();
+			updateCardCount();
+
 	      }
 	      document.body.appendChild(cardImage);
 	    })
