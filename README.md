@@ -21,7 +21,7 @@ generateEDHREC(cards)
 4. Remove blanks with:
 
 ```
-removeBlanks(cards)
+removeEmpties(cards)
 ```
 
 5. Remove duplicates with:
