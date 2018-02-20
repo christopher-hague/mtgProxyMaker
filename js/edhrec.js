@@ -19,9 +19,14 @@ $( document ).ready(function() {
     });
 
     // Typeahead
-    $.get('/js/typeahead.json', function(data){
+    $.get('mtgProxyMaker/js/typeahead.json', function(data){
         $('.typeahead').typeahead({ source:data });
     },'json');
+
+    // // Typeahead
+    // $.get('js/typeahead.json', function(data){
+    //     $('.typeahead').typeahead({ source:data });
+    // },'json');
 
     // Filter panel slide
     $("#ftitle").click(function() {
