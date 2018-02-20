@@ -19,7 +19,7 @@ $( document ).ready(function() {
     });
 
     // Typeahead
-    $.get('mtgProxyMaker/js/typeahead.json', function(data){
+    $.get('js/typeahead.json', function(data){
         $('.typeahead').typeahead({ source:data });
     },'json');
 
