@@ -24,6 +24,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script src="js/chosen.jquery.min.js"></script>
     <script src="js/edhrec.js?modified=05032017"></script>
+
     <!-- <script src="js/chosen.jquery.min.js"></script>
     <script src="js/edhrec.js?modified=05032017"></script> -->
 
@@ -31,11 +32,13 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/chosen.min.css">
     <link rel="stylesheet" href="css/edhrec.css?modified=05202017">
+
     <!-- <link rel="stylesheet" href="css/chosen.min.css">
     <link rel="stylesheet" href="css/edhrec.css?modified=05202017"> -->
   </head>
 
   <body>
+
     <form id="card-input">
       <input id="card-search" type="search" name="cc" class="form-control typeahead" data-provide="typeahead" autocomplete="off" placeholder="Search cards">
       <!-- <input id="card-search" type="search"> -->
@@ -75,8 +78,8 @@
           currentCards = cards;
           for (var i = 0; i < cards.length; i++){
               console.log(cards[i].replace(/-/g, ' '));
-              $('#card-search').value = cards[i].replace(/-/g, ' ');
-              $('#card-input > input[type="submit"]:nth-child(2)').click();
+              document.querySelector('#card-search').value = cards[i].replace(/-/g, ' ');
+              document.querySelector('#card-input > input[type="submit"]:nth-child(2)').click();
               updateCardCount();
              }
           removeEmpties(cards)
@@ -98,8 +101,8 @@
 	  function generateEDHREC(cards,cb){
 	    for (var i = 0; i < cards.length; i++){
           console.log(cards[i].replace(/-/g, ' '));
-          $('#card-search').value = cards[i].replace(/-/g, ' ');
-          $('#card-input > input[type="submit"]:nth-child(2)').click();
+          document.querySelector('#card-search').value = cards[i].replace(/-/g, ' ');
+          document.querySelector('#card-input > input[type="submit"]:nth-child(2)').click();
 		      updateCardCount();
          }
 	   }
@@ -166,7 +169,7 @@
      }
 
 	   function updateCardCount(){
-	     $('#card-count').textContent = document.querySelectorAll("img").length;
+	     document.querySelector('#card-count').textContent = document.querySelectorAll("img").length;
 	   }
 
       function appendCards(cardIds,name){
